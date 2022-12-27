@@ -28,14 +28,18 @@ import org.springframework.util.StringUtils;
 @RequiredArgsConstructor
 public class JwtUtil {
 
+	private final UserDetailsServiceImpl userDetailsService;
 	public static final String AUTHORIZATION_HEADER = "Authorization";
-	public static final String TOKEN_PREFIX = "Bearer ";
+	private static final String TOKEN_PREFIX = "Bearer ";
 	private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 1440;  // 24시간
 
-	private Key key;
+
 	@Value("${jwt.secret.key}")
 	private String secretKey;
-	private final UserDetailsServiceImpl userDetailsService;
+
+	private Key key;
+
+	private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
 	@PostConstruct
 	public void init() {
@@ -44,10 +48,23 @@ public class JwtUtil {
 	}
 
 	public String resolveToken(String bearerToken) {
-		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtUtil.TOKEN_PREFIX)) {
+		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtUtil.AUTHORIZATION_HEADER)) {
 			return bearerToken.substring(7);
 		}
 		return null;
+	}
+
+	public String creatToken(String email) {
+		Date date = new Date();
+
+		return TOKEN_PREFIX +
+				Jwts.builder()
+						.setSubject(email)
+//                        .claim(AUTHORIZATION_KEY, role) 사용자 속성 관리..?
+						.setExpiration(new Date(date.getTime() + ACCESS_TOKEN_EXPIRE_TIME))
+						.setIssuedAt(date)
+						.signWith(key, signatureAlgorithm)
+						.compact();
 	}
 
 	public String generateToken(Authentication authentication) {

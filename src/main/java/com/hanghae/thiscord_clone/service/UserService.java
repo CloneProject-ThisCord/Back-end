@@ -1,6 +1,7 @@
 package com.hanghae.thiscord_clone.service;
 
 
+import com.hanghae.thiscord_clone.Dto.response.LoginResponseDto;
 import com.hanghae.thiscord_clone.Dto.response.MsgResponseDto;
 import com.hanghae.thiscord_clone.entity.ProfileImages;
 import com.hanghae.thiscord_clone.entity.User;
@@ -63,6 +64,26 @@ public class UserService {
 		userRepository.save(user);
 
 		return new MsgResponseDto("회원가입 완료",HttpStatus.OK.value());
+	}
+
+	@Transactional(readOnly = true)
+	public LoginResponseDto login(LoginRequestDto loginRequestDto, HttpServletResponse response){
+		String email = loginRequestDto.getEmail();
+		String password = loginRequestDto.getPassword();
+
+		//사용자 확인
+		User user = userRepository.findByEmail(email).orElseThrow(
+				()  -> new UserException(ErrorCode.USER_NOT_FOUND)
+		);
+
+		//비밀번호 확인
+		if(!passwordEncoder.matches(password, user.getPassword())){
+			throw new UserException(ErrorCode.MISMATCH_PASSWORD);
+		}
+
+		response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.creatToken(user.getEmail()));
+
+		return  new LoginResponseDto(user.getEmail(), user.getHashTag(), user.getProfilePic());
 	}
 
 //	public ResponseEntity<?> login(LoginRequestDto requestDto, HttpServletResponse httpServletResponse) {

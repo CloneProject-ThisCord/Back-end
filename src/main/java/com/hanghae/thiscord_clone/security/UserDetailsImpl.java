@@ -36,12 +36,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return null;
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return this.getUser().getEmail();
     }
 
     @Override
