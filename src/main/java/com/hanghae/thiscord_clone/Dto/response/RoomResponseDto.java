@@ -1,7 +1,7 @@
-package com.hanghae.thiscord_clone.dto.response;
+package com.hanghae.thiscord_clone.Dto.response;
 
-import com.hanghae.discord_clone.entity.ChatMessage;
-import com.hanghae.discord_clone.entity.User;
+import com.hanghae.thiscord_clone.entity.ChatMessage;
+import com.hanghae.thiscord_clone.entity.User;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

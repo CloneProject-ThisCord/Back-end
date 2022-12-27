@@ -1,6 +1,6 @@
 package com.hanghae.thiscord_clone.security;
 
-import com.hanghae.discord_clone.entity.User;
+import com.hanghae.thiscord_clone.entity.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import lombok.Getter;
@@ -11,9 +11,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Getter
 public class UserDetailsImpl implements UserDetails {
     private final User user;
+    private final String email;
 
-    public UserDetailsImpl(User user) {
+    public UserDetailsImpl(User user, String email) {
+
         this.user = user;
+        this.email = email;
     }
 
     @Override

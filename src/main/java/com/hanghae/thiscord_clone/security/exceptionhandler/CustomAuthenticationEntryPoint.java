@@ -2,8 +2,8 @@ package com.hanghae.thiscord_clone.security.exceptionhandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hanghae.discord_clone.exception.custom.CustomSecurityException;
-import com.hanghae.discord_clone.exception.custom.ErrorCode;
+import com.hanghae.thiscord_clone.exception.custom.CustomSecurityException;
+import com.hanghae.thiscord_clone.exception.custom.ErrorCode;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

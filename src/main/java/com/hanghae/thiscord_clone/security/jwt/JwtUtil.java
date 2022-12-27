@@ -1,8 +1,8 @@
 package com.hanghae.thiscord_clone.security.jwt;
 
-import com.hanghae.discord_clone.exception.custom.CustomSecurityException;
-import com.hanghae.discord_clone.exception.custom.ErrorCode;
-import com.hanghae.discord_clone.security.UserDetailsServiceImpl;
+import com.hanghae.thiscord_clone.exception.custom.CustomSecurityException;
+import com.hanghae.thiscord_clone.exception.custom.ErrorCode;
+import com.hanghae.thiscord_clone.security.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.hanghae.thiscord_clone.dto.request;
+package com.hanghae.thiscord_clone.Dto.request;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
