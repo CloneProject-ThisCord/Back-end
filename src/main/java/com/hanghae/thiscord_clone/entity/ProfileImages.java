@@ -12,13 +12,21 @@ public class ProfileImages {
 
 	public static String getProfileImage(int num) {
 		switch (num) {
-			case 0, 5:
+			case 0:
 				return IMAGES[0];
-			case 1, 6:
+			case 5:
+				return IMAGES[0];
+			case 1:
 				return IMAGES[1];
-			case 2, 7:
+			case 6:
+				return IMAGES[1];
+			case 2:
 				return IMAGES[2];
-			case 3, 8:
+			case 7:
+				return IMAGES[2];
+			case 3:
+				return IMAGES[3];
+			case 8:
 				return IMAGES[3];
 			default:
 				return IMAGES[4];

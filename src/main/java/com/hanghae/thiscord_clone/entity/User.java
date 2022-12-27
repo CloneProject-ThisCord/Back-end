@@ -18,10 +18,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "USERS")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "USERS")
+@NoArgsConstructor
 public class User extends Timestamped {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +34,6 @@ public class User extends Timestamped {
 	private String username;
 
 	@Column(nullable = false)
-	@Convert(converter = PasswordEncConverter.class)
 	private String password;
 
 	@Column(nullable = false)
@@ -51,8 +49,8 @@ public class User extends Timestamped {
 	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<RoomUser> roomList;
 
-	@Builder
-	private User (String email, String username, String password, String profilePic, String hashTag) {
+
+	public User(String email, String username, String password, String profilePic, String hashTag) {
 		this.email = email;
 		this.username = username;
 		this.password = password;
