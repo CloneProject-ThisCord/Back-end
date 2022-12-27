@@ -1,14 +1,31 @@
 package com.hanghae.thiscord_clone.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hanghae.thiscord_clone.security.JwtConfig;
+import com.hanghae.thiscord_clone.security.jwt.JwtUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@RequiredArgsConstructor
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	private final JwtUtil jwtUtil;
+	private final ObjectMapper om;
+	private final CorsConfig corsConfig;
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -19,28 +36,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.formLogin() // 권한없이 페이지 접근하면 로그인 페이지로 이동한다.
 			.and()
+			.addFilter(corsConfig.corsFilter())
 			.authorizeRequests()
-			.antMatchers("/chat/**").hasRole("USER") // chat으로 시작하는 리소스에 대한 접근 권한 설정
-			.anyRequest().permitAll(); // 나머지 리소스에 대한 접근 설정
+			.antMatchers("api/user/**").permitAll()
+			.anyRequest().permitAll()
+
+			.and()
+			.apply(new JwtConfig(jwtUtil, om)); // 나머지 리소스에 대한 접근 설정
 	}
 
-	/**
-	 * 테스트를 위해 In-Memory에 계정을 임의로 생성한다.
-	 * 서비스에 사용시에는 DB데이터를 이용하도록 수정이 필요하다.
-	 */
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-			.withUser("happydaddy")
-			.password("{noop}1234")
-			.roles("USER")
-			.and()
-			.withUser("angrydaddy")
-			.password("{noop}1234")
-			.roles("USER")
-			.and()
-			.withUser("guest")
-			.password("{noop}1234")
-			.roles("GUEST");
-	}
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication()
+//			.withUser("happydaddy")
+//			.password("{noop}1234")
+//			.roles("USER")
+//			.and()
+//			.withUser("angrydaddy")
+//			.password("{noop}1234")
+//			.roles("USER")
+//			.and()
+//			.withUser("guest")
+//			.password("{noop}1234")
+//			.roles("GUEST");
+//	}
 }

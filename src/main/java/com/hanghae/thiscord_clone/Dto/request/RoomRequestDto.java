@@ -1,10 +1,14 @@
 package com.hanghae.thiscord_clone.dto.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoomRequestDto {
-	private String channelName;
-	private String imageUrl;
-	private String description;
+	private String roomName;
 }

@@ -1,8 +1,8 @@
 package com.hanghae.thiscord_clone.util;
 
-import com.hanghae.discord_clone.entity.User;
-import com.hanghae.discord_clone.exception.custom.ErrorCode;
-import com.hanghae.discord_clone.exception.custom.UserException;
+import com.hanghae.thiscord_clone.domain.User;
+import com.hanghae.thiscord_clone.exception.custom.ErrorCode;
+import com.hanghae.thiscord_clone.exception.custom.UserException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 

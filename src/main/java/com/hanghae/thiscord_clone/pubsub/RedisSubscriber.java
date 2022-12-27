@@ -1,7 +1,7 @@
 package com.hanghae.thiscord_clone.pubsub;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hanghae.thiscord_clone.Dto.ChatMessage;
+import com.hanghae.thiscord_clone.domain.ChatMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -16,12 +16,13 @@ public class RedisSubscriber {
     private final SimpMessageSendingOperations messagingTemplate;
 
     /**
-     * Redis에서 메시지가 발행(publish)되면 대기하고 있던 Redis Subscriber가 해당 메시지를 받아 처리한다.
+     * Redis 에서 메시지가 발행(publish)되면 대기하고 있던 Redis Subscriber 가 해당 메시지를 처리
      */
-    public void sendMessage(String publishMessage) {
+    public void sendMessage(String message) {
         try {
             // ChatMessage 객채로 맵핑
-            ChatMessage chatMessage = objectMapper.readValue(publishMessage, ChatMessage.class);
+            ChatMessage chatMessage = objectMapper.readValue(message, ChatMessage.class);
+
             // 채팅방을 구독한 클라이언트에게 메시지 발송
             messagingTemplate.convertAndSend("/sub/chat/room/" + chatMessage.getRoomId(), chatMessage);
         } catch (Exception e) {

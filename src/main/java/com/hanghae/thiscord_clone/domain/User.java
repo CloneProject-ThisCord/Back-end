@@ -1,17 +1,10 @@
-package com.hanghae.thiscord_clone.entity;
+package com.hanghae.thiscord_clone.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hanghae.thiscord_clone.util.PasswordEncConverter;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -34,8 +27,8 @@ public class User extends Timestamped {
 	@Column(nullable = false)
 	private String username;
 
+//	@Convert(converter = PasswordEncConverter.class)
 	@Column(nullable = false)
-	@Convert(converter = PasswordEncConverter.class)
 	private String password;
 
 	@Column(nullable = false)
@@ -44,23 +37,12 @@ public class User extends Timestamped {
 	@Column(nullable = false)
 	private String hashTag;
 
-	//로그인 여부
-	private boolean status;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<RoomUser> roomList;
-
 	@Builder
-	private User (String email, String username, String password, String profilePic, String hashTag) {
+	public User (String email, String username, String password, String profilePic, String hashTag) {
 		this.email = email;
 		this.username = username;
 		this.password = password;
 		this.profilePic = profilePic;
 		this.hashTag = hashTag;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
 	}
 }
