@@ -1,7 +1,7 @@
 package com.hanghae.thiscord_clone.service;
 
 import com.hanghae.thiscord_clone.domain.ChatMessage;
-import com.hanghae.thiscord_clone.dto.request.ChatMessageRequestDto;
+import com.hanghae.thiscord_clone.Dto.request.ChatMessageRequestDto;
 import com.hanghae.thiscord_clone.repository.ChatMessageRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;

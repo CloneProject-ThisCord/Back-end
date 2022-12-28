@@ -1,6 +1,6 @@
 package com.hanghae.thiscord_clone.domain;
 
-import com.hanghae.thiscord_clone.dto.request.ChatMessageRequestDto;
+import com.hanghae.thiscord_clone.Dto.request.ChatMessageRequestDto;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -21,7 +21,7 @@ public class ChatMessageController {
 	private final ChatMessageRepository chatMessageRepository;
 
 	@MessageMapping("/chat/message")
-	public void message(com.hanghae.thiscord_clone.dto.request.ChatMessageRequestDto requestDto) {
+	public void message(com.hanghae.thiscord_clone.Dto.request.ChatMessageRequestDto requestDto) {
 		LocalDateTime now = LocalDateTime.now();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		chatMessageService.save(requestDto, format.format(now));
