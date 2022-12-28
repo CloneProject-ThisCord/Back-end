@@ -60,7 +60,7 @@ public class ChatRoomRepository {
 //			.roomPic(chatRoom.getRoomPic())
 //			.build();
 		return ChatRoomResponseDto.builder()
-			.roomId(chatRoom.getRoomId())
+			.roomId(chatRoom.getRoomId().substring(7))
 			.roomName(chatRoom.getRoomName())
 			.roomPic(chatRoom.getRoomPic())
 			.build();
