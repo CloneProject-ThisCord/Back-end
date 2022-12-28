@@ -7,17 +7,15 @@ import com.hanghae.thiscord_clone.exception.custom.ErrorCode;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
+@Component
 @Slf4j
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
-
-	private final ObjectMapper om;
 
 	private static final String DEFAULT_ERROR_MSG = "Full authentication is required to access this resource";
 	private static final String CUSTOM_DEFAULT_ERROR_MSG = "문제가 발생했습니다.";
@@ -40,7 +38,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 		CustomSecurityException errorResponse = new CustomSecurityException(
 			ErrorCode.UNAUTHORIZED_ERROR);
 
-		String result = om.writeValueAsString(errorResponse);
+		String result = new ObjectMapper().writeValueAsString(errorResponse);
 
 		response.getWriter().write(result);
 

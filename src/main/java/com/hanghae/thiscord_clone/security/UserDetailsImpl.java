@@ -14,7 +14,6 @@ public class UserDetailsImpl implements UserDetails {
     private final String email;
 
     public UserDetailsImpl(User user, String email) {
-
         this.user = user;
         this.email = email;
     }

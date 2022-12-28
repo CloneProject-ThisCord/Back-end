@@ -7,17 +7,15 @@ import com.hanghae.thiscord_clone.exception.custom.ErrorCode;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
+@Component
 @Slf4j
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-
-	private final ObjectMapper om;
 
 	private static final String CUSTOM_DEFAULT_ERROR_MSG = "권한이 없습니다.";
 
@@ -38,7 +36,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		CustomSecurityException errorResponse = new CustomSecurityException(
 			ErrorCode.FORBIDDEN_ERROR);
 
-		String result = om.writeValueAsString(errorResponse);
+		String result = new ObjectMapper().writeValueAsString(errorResponse);
 
 		response.getWriter().write(result);
 

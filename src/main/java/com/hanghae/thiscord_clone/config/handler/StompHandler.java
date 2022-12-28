@@ -8,7 +8,6 @@ import com.hanghae.thiscord_clone.security.jwt.JwtUtil;
 import com.hanghae.thiscord_clone.service.ChatMessageService;
 import com.hanghae.thiscord_clone.service.ChatRoomService;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -19,7 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Component
 public class StompHandler implements ChannelInterceptor {
 
@@ -27,6 +26,14 @@ public class StompHandler implements ChannelInterceptor {
 	private final ChatRoomService chatRoomService;
 	private final ChatRoomRepository chatRoomRepository;
 	private final ChatMessageService chatMessageService;
+
+	public StompHandler(JwtUtil jwtUtil, ChatRoomService chatRoomService,
+		ChatRoomRepository chatRoomRepository, ChatMessageService chatMessageService) {
+		this.jwtUtil = jwtUtil;
+		this.chatRoomService = chatRoomService;
+		this.chatRoomRepository = chatRoomRepository;
+		this.chatMessageService = chatMessageService;
+	}
 
 	// websocket 을 통해 들어온 요청이 처리 되기전 실행
 	@Override

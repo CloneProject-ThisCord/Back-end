@@ -47,9 +47,9 @@ public class JwtUtil {
 		key = Keys.hmacShaKeyFor(keyBytes);
 	}
 
-	public String resolveToken(String bearerToken) {
-		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(JwtUtil.AUTHORIZATION_HEADER)) {
-			return bearerToken.substring(7);
+	public String resolveToken(String token) {
+		if (StringUtils.hasText(token) && token.startsWith(JwtUtil.TOKEN_PREFIX)) {
+			return token.substring(7);
 		}
 		return null;
 	}
@@ -65,16 +65,6 @@ public class JwtUtil {
 						.setIssuedAt(date)
 						.signWith(key, signatureAlgorithm)
 						.compact();
-	}
-
-	public String generateToken(Authentication authentication) {
-		Date accessTokenExpiresIn = new Date(new Date().getTime() + ACCESS_TOKEN_EXPIRE_TIME);
-
-		return TOKEN_PREFIX + Jwts.builder()
-			.setSubject(authentication.getName())
-			.setExpiration(accessTokenExpiresIn)
-			.signWith(key, SignatureAlgorithm.HS256)
-			.compact();
 	}
 
 	public Authentication getAuthentication(String token) {
