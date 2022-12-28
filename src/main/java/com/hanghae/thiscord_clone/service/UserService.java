@@ -1,27 +1,26 @@
 package com.hanghae.thiscord_clone.service;
 
 
-import com.hanghae.thiscord_clone.dto.response.LoginResponseDto;
-import com.hanghae.thiscord_clone.dto.response.MsgResponseDto;
+import com.hanghae.thiscord_clone.Dto.request.LoginRequestDto;
+import com.hanghae.thiscord_clone.Dto.request.SignUpRequestDto;
+import com.hanghae.thiscord_clone.Dto.response.LoginResponseDto;
+import com.hanghae.thiscord_clone.Dto.response.MsgResponseDto;
 import com.hanghae.thiscord_clone.domain.ProfileImages;
 import com.hanghae.thiscord_clone.domain.User;
-import com.hanghae.thiscord_clone.dto.request.LoginRequestDto;
-import com.hanghae.thiscord_clone.dto.request.SignUpRequestDto;
-//import com.hanghae.thiscord_clone.Dto.response.MsgResponseDto;
 import com.hanghae.thiscord_clone.exception.custom.ErrorCode;
 import com.hanghae.thiscord_clone.exception.custom.UserException;
 import com.hanghae.thiscord_clone.repository.UserRepository;
 import com.hanghae.thiscord_clone.security.jwt.JwtUtil;
-
-import java.util.Optional;
-import java.util.Random;
-import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor

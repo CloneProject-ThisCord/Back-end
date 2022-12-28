@@ -1,9 +1,9 @@
 package com.hanghae.thiscord_clone.controller;
 
-import com.hanghae.thiscord_clone.dto.request.LoginRequestDto;
-import com.hanghae.thiscord_clone.dto.request.SignUpRequestDto;
-import com.hanghae.thiscord_clone.dto.response.LoginResponseDto;
-import com.hanghae.thiscord_clone.dto.response.MsgResponseDto;
+import com.hanghae.thiscord_clone.Dto.request.LoginRequestDto;
+import com.hanghae.thiscord_clone.Dto.request.SignUpRequestDto;
+import com.hanghae.thiscord_clone.Dto.response.LoginResponseDto;
+import com.hanghae.thiscord_clone.Dto.response.MsgResponseDto;
 import com.hanghae.thiscord_clone.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

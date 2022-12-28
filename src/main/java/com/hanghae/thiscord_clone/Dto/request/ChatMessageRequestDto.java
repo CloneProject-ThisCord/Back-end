@@ -1,11 +1,7 @@
 package com.hanghae.thiscord_clone.Dto.request;
 
 import com.hanghae.thiscord_clone.domain.ChatMessage;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter

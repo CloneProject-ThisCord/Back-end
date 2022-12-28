@@ -1,4 +1,4 @@
-package com.hanghae.thiscord_clone.dto.response;
+package com.hanghae.thiscord_clone.Dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

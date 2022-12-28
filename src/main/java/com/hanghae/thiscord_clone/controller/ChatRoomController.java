@@ -1,17 +1,12 @@
 package com.hanghae.thiscord_clone.controller;
 
+import com.hanghae.thiscord_clone.Dto.response.ChatRoomResponseDto;
 import com.hanghae.thiscord_clone.domain.ChatRoom;
-import com.hanghae.thiscord_clone.dto.response.ChatRoomResponseDto;
 import com.hanghae.thiscord_clone.repository.ChatRoomRepository;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -30,7 +25,7 @@ public class ChatRoomController {
 
     //채팅방 생성
     @PostMapping("/rooms")
-    public ChatRoomResponseDto createRoom(@RequestBody com.hanghae.thiscord_clone.dto.request.RoomRequestDto requestDto) {
+    public ChatRoomResponseDto createRoom(@RequestBody com.hanghae.thiscord_clone.Dto.request.RoomRequestDto requestDto) {
         return chatRoomRepository.createChatRoom(requestDto);
     }
 

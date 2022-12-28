@@ -1,21 +1,10 @@
 package com.hanghae.thiscord_clone.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hanghae.thiscord_clone.dto.request.RoomRequestDto;
+import com.hanghae.thiscord_clone.Dto.request.RoomRequestDto;
+import lombok.*;
+
 import java.io.Serializable;
-import java.util.List;
 import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Setter

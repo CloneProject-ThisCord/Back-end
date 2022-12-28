@@ -1,19 +1,19 @@
 package com.hanghae.thiscord_clone.repository;
 
+import com.hanghae.thiscord_clone.Dto.request.RoomRequestDto;
+import com.hanghae.thiscord_clone.Dto.response.ChatRoomResponseDto;
 import com.hanghae.thiscord_clone.domain.ChatRoom;
 import com.hanghae.thiscord_clone.domain.LoginInfo;
 import com.hanghae.thiscord_clone.domain.User;
-import com.hanghae.thiscord_clone.dto.request.RoomRequestDto;
-import com.hanghae.thiscord_clone.dto.response.ChatRoomResponseDto;
-import com.hanghae.thiscord_clone.util.UserUtil;
-import java.util.List;
-import java.util.Optional;
-import javax.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor

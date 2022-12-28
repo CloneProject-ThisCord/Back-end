@@ -1,14 +1,12 @@
-package com.hanghae.thiscord_clone.dto.response;
+package com.hanghae.thiscord_clone.Dto.response;
 
-import com.hanghae.thiscord_clone.domain.ChatMessage;
 import com.hanghae.thiscord_clone.domain.LoginInfo;
-import com.hanghae.thiscord_clone.domain.User;
-import java.util.ArrayList;
-import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor

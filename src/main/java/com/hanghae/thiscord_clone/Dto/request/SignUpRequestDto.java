@@ -1,9 +1,10 @@
-package com.hanghae.thiscord_clone.dto.request;
+package com.hanghae.thiscord_clone.Dto.request;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import lombok.Getter;
-import lombok.Setter;
 
 @Setter
 @Getter
