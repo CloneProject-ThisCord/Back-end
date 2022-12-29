@@ -43,7 +43,7 @@ public class StompHandler implements ChannelInterceptor {
 		if (StompCommand.CONNECT == accessor.getCommand()) { // websocket 연결요청
 			String jwtToken = Objects.requireNonNull(accessor.getFirstNativeHeader("Authorization"))
 				.split(" ")[1].trim();
-			System.out.println(jwtToken);
+			System.out.println("token 값:" + jwtToken);
 			log.info("connect {}", jwtToken);
 
 			// Header 의 jwt token 검증
@@ -64,7 +64,7 @@ public class StompHandler implements ChannelInterceptor {
 			chatRoomRepository.plusUserCount(roomId);
 
 			Authentication authentication = jwtUtil.getAuthentication(Objects.requireNonNull(accessor.getFirstNativeHeader("Authorization")));
-			System.out.println("header 에서 가져온 Authorization 값 : " + authentication);
+			System.out.println("header 에서 가져온 Authorization 값: " + authentication);
 
 			User user = ((UserDetailsImpl)authentication.getPrincipal()).getUser();
 			log.info("user info {}", user);
@@ -86,7 +86,7 @@ public class StompHandler implements ChannelInterceptor {
 			String roomId = chatRoomRepository.getUserEnterRoomId(sessionId);
 
 			Authentication authentication = jwtUtil.getAuthentication(Objects.requireNonNull(accessor.getFirstNativeHeader("Authorization")));
-			System.out.println("header 에서 가져온 Authorization 값 : " + authentication);
+			System.out.println("header 에서 가져온 Authorization 값: " + authentication);
 			User user = ((UserDetailsImpl)authentication.getPrincipal()).getUser();
 
 			// 채팅방의 인원수를 -1한다.

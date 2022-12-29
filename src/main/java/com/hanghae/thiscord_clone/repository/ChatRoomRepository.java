@@ -71,19 +71,23 @@ public class ChatRoomRepository {
 
 	// roomId 로 채팅방에 입장한 유저 정보 저장
 	public void setUserInfo(String roomId, User user) {
-		String hashKey = roomId + user.getId();
-		LoginInfo loginInfo = LoginInfo.builder()
-			.username(user.getUsername())
-			.profilePic(user.getProfilePic())
-			.hashTag(user.getHashTag())
-			.build();
-		hashOpsLoginInfo.put(USER_INFO , hashKey, loginInfo);
+		LoginInfo loginInfo = LoginInfo.insertUserInfo(user);
+		hashOpsLoginInfo.put(USER_INFO, roomId, loginInfo);
+//		LoginInfo loginInfo = LoginInfo.builder()
+//			.username(user.getUsername())
+//			.profilePic(user.getProfilePic())
+//			.hashTag(user.getHashTag())
+//			.build();
+//		hashOpsLoginInfo.put(USER_INFO , hashKey, loginInfo);
 	}
 
 	// 채팅방에서 퇴장한 유저 정보 삭제
 	public void removeUserInfo(String roomId, User user) {
-		String hashKey = roomId + user.getId();
-		hashOpsLoginInfo.delete(USER_INFO, hashKey);
+		LoginInfo loginInfo = LoginInfo.builder()
+			.username(user.getUsername())
+			.hashTag(user.getHashTag())
+			.profilePic(user.getProfilePic()).build();
+		hashOpsLoginInfo.delete(USER_INFO, roomId, loginInfo);
 	}
 
 	// roomId 로 채팅방에 입장한 유저 정보 조회
