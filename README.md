@@ -35,4 +35,26 @@ Websocket과 redis를 활용한 채팅기능을 구현 해보고자 Discord 클�
 * Amazon EC2
   
 ## 💡트러블 슈팅
+<details>
+<summary>1. 서버 배포시 embeddedRedisConfig의 bean을 생성할 수 없없던 문제</summary>
+<br>
+<div markdown="1">
+<p></p>
+</div>
+</details>
 
+<details>
+<summary>2. 서버 배포시 dto classNotFoundException이 발생했던 문제</summary>
+<br>
+<div markdown="2">
+<p></p>
+</div>
+</details>
+
+<details>
+<summary>3. websocket 연결 후, subscribe 과정에서 Token DecodingException이 발생했던 문제</summary>
+<br>
+<div markdown="3">
+<p></p>
+</div>
+</details>
