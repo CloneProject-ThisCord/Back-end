@@ -3,17 +3,8 @@ package com.hanghae.thiscord_clone.security.jwt;
 import com.hanghae.thiscord_clone.exception.custom.CustomSecurityException;
 import com.hanghae.thiscord_clone.exception.custom.ErrorCode;
 import com.hanghae.thiscord_clone.security.UserDetailsServiceImpl;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.UnsupportedJwtException;
-import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import java.security.Key;
-import java.util.Date;
-import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +13,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+
+import javax.annotation.PostConstruct;
+import java.security.Key;
+import java.util.Base64;
+import java.util.Date;
 
 @Component
 @Slf4j
@@ -43,14 +39,14 @@ public class JwtUtil {
 
 	@PostConstruct
 	public void init() {
-		byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+		byte[] keyBytes = Base64.getUrlDecoder().decode(secretKey);
 		key = Keys.hmacShaKeyFor(keyBytes);
 	}
 
 	public String resolveToken(String token) {
 		if (StringUtils.hasText(token) && token.startsWith(JwtUtil.TOKEN_PREFIX)) {
 			System.out.println("token 값: " + token.split(" ")[1].trim());
-			return token.split(" ")[1].trim();
+			return token.substring(7);
 		}
 		return null;
 	}
