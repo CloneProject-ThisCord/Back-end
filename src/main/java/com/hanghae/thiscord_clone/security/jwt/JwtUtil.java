@@ -57,20 +57,21 @@ public class JwtUtil {
 	public String creatToken(String email) {
 		Date date = new Date();
 
-		return TOKEN_PREFIX +
-				Jwts.builder()
-						.setSubject(email)
+		return
+			Jwts.builder()
+				.setSubject(email)
 //                        .claim(AUTHORIZATION_KEY, role) 사용자 속성 관리..?
-						.setExpiration(new Date(date.getTime() + ACCESS_TOKEN_EXPIRE_TIME))
-						.setIssuedAt(date)
-						.signWith(key, signatureAlgorithm)
-						.compact();
+				.setExpiration(new Date(date.getTime() + ACCESS_TOKEN_EXPIRE_TIME))
+				.setIssuedAt(date)
+				.signWith(key, signatureAlgorithm)
+				.compact();
 	}
 
 	public Authentication getAuthentication(String token) {
 		Claims claims = parseClaims(token);
 		UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
-		return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+		return new UsernamePasswordAuthenticationToken(userDetails, "",
+			userDetails.getAuthorities());
 	}
 
 	public void validateToken(String token) {
@@ -93,7 +94,8 @@ public class JwtUtil {
 
 	private Claims parseClaims(String accessToken) {
 		try {
-			return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
+			return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken)
+				.getBody();
 		} catch (ExpiredJwtException e) {
 			return e.getClaims();
 		}
