@@ -49,6 +49,7 @@ public class JwtUtil {
 
 	public String resolveToken(String token) {
 		if (StringUtils.hasText(token) && token.startsWith(JwtUtil.TOKEN_PREFIX)) {
+			System.out.println("token 값: " + token.split(" ")[1].trim());
 			return token.split(" ")[1].trim();
 		}
 		return null;
