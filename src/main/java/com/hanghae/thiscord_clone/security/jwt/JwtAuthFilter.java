@@ -52,6 +52,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private void sendErrorMsg(Exception e, HttpServletResponse response) {
         response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
 
         try {
