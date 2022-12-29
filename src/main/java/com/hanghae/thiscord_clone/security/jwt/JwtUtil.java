@@ -49,7 +49,7 @@ public class JwtUtil {
 
 	public String resolveToken(String token) {
 		if (StringUtils.hasText(token) && token.startsWith(JwtUtil.TOKEN_PREFIX)) {
-			return token.substring(7);
+			return token.split(" ")[1].trim();
 		}
 		return null;
 	}

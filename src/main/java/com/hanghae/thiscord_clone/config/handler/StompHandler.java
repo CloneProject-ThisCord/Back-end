@@ -42,7 +42,7 @@ public class StompHandler implements ChannelInterceptor {
 
 		if (StompCommand.CONNECT == accessor.getCommand()) { // websocket 연결요청
 			String jwtToken = Objects.requireNonNull(accessor.getFirstNativeHeader("Authorization"))
-				.substring(7);
+				.split(" ")[1].trim();
 			log.info("connect {}", jwtToken);
 
 			// Header 의 jwt token 검증
