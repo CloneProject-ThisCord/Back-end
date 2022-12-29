@@ -77,7 +77,7 @@ public class UserService {
 
 		response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.creatToken(user.getEmail()));
 
-		return  new LoginResponseDto(user.getUsername(), user.getHashTag(), user.getProfilePic());
+		return  new LoginResponseDto(user.getId(), user.getUsername(), user.getHashTag(), user.getProfilePic());
 	}
 
 //	public ResponseEntity<?> login(LoginRequestDto requestDto, HttpServletResponse httpServletResponse) {
