@@ -67,7 +67,7 @@ public class StompHandler implements ChannelInterceptor {
 			log.info("user info {}", user);
 
 			// 입장한 유저 정보를 저장하고, 입장 메시지를 채팅방에 발송 (redis publish)
-			chatRoomRepository.setUserInfo(roomId, user);
+//			chatRoomRepository.setUserInfo(roomId, user);
 			chatMessageService.sendChatMessage(
 				ChatMessage.builder()
 					.type(ChatMessage.MessageType.ENTER)
@@ -89,7 +89,7 @@ public class StompHandler implements ChannelInterceptor {
 			chatRoomRepository.minusUserCount(roomId);
 
 			// 퇴장한 유저 정보를 삭제하고, 클라이언트 퇴장 메시지를 채팅방에 발송(redis publish)
-			chatRoomRepository.removeUserInfo(roomId, user);
+//			chatRoomRepository.removeUserInfo(roomId, user);
 			chatMessageService.sendChatMessage(
 				ChatMessage.builder()
 					.type(ChatMessage.MessageType.QUIT)

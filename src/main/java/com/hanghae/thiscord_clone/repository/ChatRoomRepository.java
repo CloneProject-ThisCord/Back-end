@@ -1,19 +1,17 @@
 package com.hanghae.thiscord_clone.repository;
 
 import com.hanghae.thiscord_clone.Dto.request.RoomRequestDto;
-import com.hanghae.thiscord_clone.Dto.response.ChatRoomResponseDto;
 import com.hanghae.thiscord_clone.domain.ChatRoom;
 import com.hanghae.thiscord_clone.domain.LoginInfo;
 import com.hanghae.thiscord_clone.domain.User;
+import java.util.List;
+import java.util.Optional;
+import javax.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.Resource;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -40,30 +38,30 @@ public class ChatRoomRepository {
 	}
 
 	// 특정 채팅방 조회
-	public ChatRoomResponseDto findRoomById(String roomId) {
-		ChatRoom chatRoom = hashOpsChatRoom.get(CHAT_ROOMS, roomId);
-		return ChatRoomResponseDto.builder()
-			.roomId(chatRoom.getRoomId())
-			.roomName(chatRoom.getRoomName())
-			.roomPic(chatRoom.getRoomPic())
-			.userCount(getUserCount(chatRoom.getRoomId()))
-			.userInfoList(getUserInfoList(chatRoom.getRoomId())).build();
-	}
-
-	// 채팅방 생성 : 서버간 채팅방 공유를 위해 redis hash 에 저장한다. -> 채팅방 지워지지 않음
-	public ChatRoomResponseDto createChatRoom(RoomRequestDto roomRequestDto) {
-		ChatRoom chatRoom = ChatRoom.create(roomRequestDto);
-		hashOpsChatRoom.put(CHAT_ROOMS, chatRoom.getRoomId(), chatRoom);
-//		return ChatRoom.builder()
+	public ChatRoom findRoomById(String roomId) {
+		return hashOpsChatRoom.get(CHAT_ROOMS, roomId);
+//		return ChatRoomResponseDto.builder()
 //			.roomId(chatRoom.getRoomId())
 //			.roomName(chatRoom.getRoomName())
 //			.roomPic(chatRoom.getRoomPic())
-//			.build();
-		return ChatRoomResponseDto.builder()
-			.roomId(chatRoom.getRoomId().substring(7))
+//			.userCount(getUserCount(chatRoom.getRoomId()))
+//			.userInfoList(getUserInfoList(chatRoom.getRoomId())).build();
+	}
+
+	// 채팅방 생성 : 서버간 채팅방 공유를 위해 redis hash 에 저장한다. -> 채팅방 지워지지 않음
+	public ChatRoom createChatRoom(RoomRequestDto roomRequestDto) {
+		ChatRoom chatRoom = ChatRoom.create(roomRequestDto);
+		hashOpsChatRoom.put(CHAT_ROOMS, chatRoom.getRoomId(), chatRoom);
+		return ChatRoom.builder()
+			.roomId(chatRoom.getRoomId())
 			.roomName(chatRoom.getRoomName())
 			.roomPic(chatRoom.getRoomPic())
 			.build();
+//		return ChatRoomResponseDto.builder()
+//			.roomId(chatRoom.getRoomId().substring(7))
+//			.roomName(chatRoom.getRoomName())
+//			.roomPic(chatRoom.getRoomPic())
+//			.build();
 	}
 
 	// 유저가 입장한 roomId 와 유저 sessionId 맵핑 정보 저장
