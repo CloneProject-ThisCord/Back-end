@@ -68,3 +68,12 @@ Websocket과 redis를 활용한 채팅기능을 구현 해보고자 Discord 클�
    token decoding 과정에서 공백이 들어간다는 에러 메세지 였는데, System.out.println()과 log를 이용해 확인한 결과 프론트에서는 토큰값을 잘 받아오고 있었다.<br> 또, jwt secret key의 값을 변경해보기도 했는데, 변함없이 같은 Exception이 발생했다. <br>해당 Exception은 아직 미해결로, 지속적으로 코드를 뜯어보고 수정해 나갈 것이다.
 </div>
 </details>
+
+<details>
+<summary><b>4. 인스턴스 서버 REDIS 설정시 발생했던 문제<b></summary>
+<br>
+<div markdown="3">REDIS를 이용한 서버배포를 위해 EC2서버에 REDIS 설치후 배포하였으나 문제발생<br>
+   REDIS설정 시 인스턴스 서버 내에 외부접속을 위한 포트번호 미변경과 MEMORY설정 문제로 확인 외부접속을 위해 포트 넘버를 0.0.0.0으로 바꾸고 max memory설정을 통해 문제를 해결 
+</div>
+</details>
+
