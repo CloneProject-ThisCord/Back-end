@@ -3,17 +3,8 @@ package com.hanghae.thiscord_clone.security.jwt;
 import com.hanghae.thiscord_clone.exception.custom.CustomSecurityException;
 import com.hanghae.thiscord_clone.exception.custom.ErrorCode;
 import com.hanghae.thiscord_clone.security.UserDetailsServiceImpl;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import java.security.Key;
-import java.util.Base64;
-import java.util.Date;
-import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +14,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import java.security.Key;
+import java.util.Base64;
+import java.util.Date;
+
 @Component
 @Slf4j
 @RequiredArgsConstructor
@@ -31,7 +28,7 @@ public class JwtUtil {
 	private final UserDetailsServiceImpl userDetailsService;
 	public static final String AUTHORIZATION_HEADER = "Authorization";
 	private static final String TOKEN_PREFIX = "Bearer ";
-	private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 1440;  // 24시간
+	private static final long ACCESS_TOKEN_EXPIRE_TIME = 60 * 60 * 100000L;  // 24시간
 
 
 	@Value("${jwt.secret.key}")
@@ -48,10 +45,11 @@ public class JwtUtil {
 		key = Keys.hmacShaKeyFor(keyBytes);
 	}
 
-	public String resolveToken(String token) {
-		if (StringUtils.hasText(token) && token.startsWith(JwtUtil.TOKEN_PREFIX)) {
-			System.out.println("token 값:" + token.split(" ")[1].trim());
-			return token.split(" ")[1].trim();
+	public String resolveToken(HttpServletRequest request) {
+		String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)) {
+			System.out.println("token 값:" + bearerToken.split(" ")[1].trim());
+			return bearerToken.split(" ")[1].trim();
 		}
 		return null;
 	}
@@ -59,7 +57,7 @@ public class JwtUtil {
 	public String creatToken(String email) {
 		Date date = new Date();
 
-		return
+		return TOKEN_PREFIX +
 			Jwts.builder()
 				.setSubject(email)
 //                        .claim(AUTHORIZATION_KEY, role) 사용자 속성 관리..?
