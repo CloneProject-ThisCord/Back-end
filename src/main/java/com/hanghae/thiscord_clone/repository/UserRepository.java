@@ -1,12 +1,13 @@
 package com.hanghae.thiscord_clone.repository;
 
-import com.hanghae.discord_clone.entity.User;
+import com.hanghae.thiscord_clone.domain.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByEmail(String email);
-	boolean existsByEmail(String email);
+
+//	boolean existsByEmail(String email);
 
 	Optional<User> findByHashTag(String hashTag);
 }

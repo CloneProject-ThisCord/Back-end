@@ -1,6 +1,6 @@
 package com.hanghae.thiscord_clone.exception;
 
-import com.hanghae.discord_clone.exception.custom.CommonException;
+import com.hanghae.thiscord_clone.exception.custom.CommonException;
 import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

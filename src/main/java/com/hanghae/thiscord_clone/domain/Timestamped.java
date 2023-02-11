@@ -1,4 +1,4 @@
-package com.hanghae.thiscord_clone.entity;
+package com.hanghae.thiscord_clone.domain;
 
 import java.time.LocalDateTime;
 import javax.persistence.EntityListeners;

@@ -1,6 +1,5 @@
-package com.hanghae.thiscord_clone.dto.response;
+package com.hanghae.thiscord_clone.Dto.response;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,6 +18,7 @@ public class UserResponseDto {
 	private String introduce;
 	private String hashtag;
 	private boolean status;
-	private LocalDateTime createdAt;
-	private LocalDateTime modifiedAt;
+
+//	private LocalDateTime createdAt;
+//	private LocalDateTime modifiedAt;
 }

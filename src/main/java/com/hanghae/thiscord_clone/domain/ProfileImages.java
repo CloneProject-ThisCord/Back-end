@@ -1,4 +1,4 @@
-package com.hanghae.thiscord_clone.entity;
+package com.hanghae.thiscord_clone.domain;
 
 public class ProfileImages {
 
@@ -11,17 +11,16 @@ public class ProfileImages {
 	};
 
 	public static String getProfileImage(int num) {
-		switch (num) {
-			case 0, 5:
-				return IMAGES[0];
-			case 1, 6:
-				return IMAGES[1];
-			case 2, 7:
-				return IMAGES[2];
-			case 3, 8:
-				return IMAGES[3];
-			default:
-				return IMAGES[4];
+		if (num == 0 | num == 5) {
+			return IMAGES[0];
+		} else if (num == 1 || num == 6) {
+			return IMAGES[1];
+		} else if (num ==2 || num == 7) {
+			return IMAGES[2];
+		} else if (num == 3 || num == 8) {
+			return IMAGES[3];
+		} else {
+			return IMAGES[4];
 		}
 	}
 }

@@ -1,8 +1,8 @@
 package com.hanghae.thiscord_clone.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hanghae.discord_clone.security.jwt.JwtAuthFilter;
-import com.hanghae.discord_clone.security.jwt.JwtUtil;
+import com.hanghae.thiscord_clone.security.jwt.JwtAuthFilter;
+import com.hanghae.thiscord_clone.security.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

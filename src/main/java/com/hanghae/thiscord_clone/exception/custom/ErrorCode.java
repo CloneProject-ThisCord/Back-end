@@ -22,7 +22,7 @@ public enum ErrorCode {
 	UNAUTHORIZED_ERROR("인증되지 않았습니다.", UNAUTHORIZED.value()),
 
 	/*403 FORBIDDEN */
-	FORBIDDEN_ERROR("접근이 거부되었습니다", FORBIDDEN.value());
+	FORBIDDEN_ERROR("접근 권한이 없습니다.", FORBIDDEN.value());
 
 	private final String msg;
 	private final int statusCode;
