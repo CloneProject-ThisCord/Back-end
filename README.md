@@ -1,4 +1,5 @@
 # ThisCord(Discord clone coding)
+<img width="912" src="https://user-images.githubusercontent.com/65327103/219261913-298994f8-61bc-4562-85c3-f63b9e19b706.png">
 Websocket과 redis를 활용한 채팅기능을 구현 해보고자 Discord 클론코딩을 진행하였습니다.
 
 ## 📆개발기간
